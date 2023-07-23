@@ -16,6 +16,18 @@ class NewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
+
+        val apiManager = ApiManager()
+        apiManager.getPosts(object : ApiCallback<News> {
+            override fun onSuccess(response: News) {
+                binding.newsText.text = response.toString()
+            }
+
+            override fun onFailure(errorMessage: String) {
+                binding.newsText.text = errorMessage
+            }
+        })
+
         return binding.root
     }
 }
