@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/baseline_news"
+        android:title="News" />
+
+    <item
+        android:id="@+id/navigation_scores"
+        android:icon="@drawable/baseline_score"
+        android:title="Scores" />
+
+    <item
+        android:id="@+id/navigation_highlights"
+        android:icon="@drawable/baseline_highlights"
+        android:title="Highlights" />
+
+    <item
+        android:id="@+id/navigation_premium"
+        android:icon="@drawable/baseline_premium"
+        android:title="Premium" />
+</menu>
