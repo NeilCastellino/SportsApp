@@ -5,6 +5,10 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.neil.castellino.sports.databinding.ActivityMainBinding
+import com.neil.castellino.sports.fragments.HighlightsFragment
+import com.neil.castellino.sports.fragments.NewsFragment
+import com.neil.castellino.sports.fragments.PremiumFragment
+import com.neil.castellino.sports.fragments.ScoresFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

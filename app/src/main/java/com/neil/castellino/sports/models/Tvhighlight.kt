@@ -1,4 +1,4 @@
-package com.neil.castellino.sports
+package com.neil.castellino.sports.models
 
 data class Tvhighlight(
     val dateEvent: String,

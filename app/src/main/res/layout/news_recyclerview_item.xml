@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.neil.castellino.sports.models.Tvhighlight" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/strThumb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{data.strThumb}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:videoUrl="@{data.strVideo}" />
+
+            <TextView
+                android:id="@+id/strEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.strEvent}"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/strThumb" />
+
+            <TextView
+                android:id="@+id/strLeague"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.strLeague}"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/strEvent" />
+
+            <TextView
+                android:id="@+id/strSport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.strSport}"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/strLeague" />
+
+            <TextView
+                android:id="@+id/dateEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.dateEvent}"
+                android:textSize="20sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/strLeague" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
