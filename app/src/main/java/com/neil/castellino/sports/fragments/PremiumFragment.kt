@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.neil.castellino.sports.R
 import com.neil.castellino.sports.databinding.FragmentPremiumBinding
+import com.neil.castellino.sports.models.Premium
 
 class PremiumFragment : Fragment() {
     private lateinit var binding: FragmentPremiumBinding
@@ -16,6 +17,27 @@ class PremiumFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_premium, container, false)
+
+        val monthlyPremium = Premium(
+            "Try Premium for 1 month",
+            true,
+            "Free for 1 month, then \$14.99 per month after."
+        )
+
+        val yearlyPremium = Premium(
+            "Try Premium for 3 months",
+            false,
+            "Free for 3 months, then \$9.99 per month after."
+        )
+
+        binding.data = monthlyPremium
+        binding.customSwitch.setOnCheckedChangeListener { _, isYearly ->
+            if (isYearly) {
+                binding.data = yearlyPremium
+            } else {
+                binding.data = monthlyPremium
+            }
+        }
 
         return binding.root
     }
