@@ -2,18 +2,30 @@ package com.neil.castellino.sports.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.neil.castellino.sports.databinding.SportsListRecyclerviewItemBinding
 import com.neil.castellino.sports.models.Sport
 
-class SportsListAdapter(private val dataItems: List<Sport>) :
-    RecyclerView.Adapter<SportsListAdapter.ViewHolder>() {
+class SportsListAdapter() :
+    ListAdapter<Sport, SportsListAdapter.ViewHolder>(DiffCallback()) {
 
     inner class ViewHolder(private val binding: SportsListRecyclerviewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Sport) {
             binding.data = data
             binding.executePendingBindings()
+        }
+    }
+
+    class DiffCallback : DiffUtil.ItemCallback<Sport>() {
+        override fun areItemsTheSame(oldItem: Sport, newItem: Sport): Boolean {
+            return oldItem.idSport == newItem.idSport
+        }
+
+        override fun areContentsTheSame(oldItem: Sport, newItem: Sport): Boolean {
+            return oldItem == newItem
         }
     }
 
@@ -24,11 +36,6 @@ class SportsListAdapter(private val dataItems: List<Sport>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = dataItems[position]
-        holder.bind(item)
-    }
-
-    override fun getItemCount(): Int {
-        return dataItems.size
+        holder.bind(getItem(position))
     }
 }

@@ -1,47 +1,39 @@
 package com.neil.castellino.sports.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.neil.castellino.sports.MainViewModel
 import com.neil.castellino.sports.R
 import com.neil.castellino.sports.adapters.SportsListAdapter
 import com.neil.castellino.sports.databinding.FragmentScoresBinding
-import com.neil.castellino.sports.models.SportsData
-import com.neil.castellino.sports.network.ApiCallback
-import com.neil.castellino.sports.network.ApiManager
 
 class ScoresFragment : Fragment() {
+
+    private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentScoresBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_scores, container, false)
+        binding.lifecycleOwner = this
 
-        binding.scoresRecyclerView.adapter = SportsListAdapter(listOf())
+        val adapter = SportsListAdapter()
+        binding.scoresRecyclerView.adapter = adapter
         binding.scoresRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val apiManager = ApiManager()
-        apiManager.getSportsList(object : ApiCallback<SportsData> {
-            override fun onSuccess(response: SportsData) {
-                binding.scoresRecyclerView.adapter = SportsListAdapter(response.sports)
-            }
-
-            override fun onFailure(errorMessage: String) {
-                Toast.makeText(requireContext(), "API Error: $errorMessage", Toast.LENGTH_LONG)
-                    .show()
-                Log.e("API Error getPosts", errorMessage)
-            }
-        })
+        viewModel.sportsList.observe(viewLifecycleOwner) { sportsList ->
+            adapter.submitList(sportsList)
+        }
 
         return binding.root
     }

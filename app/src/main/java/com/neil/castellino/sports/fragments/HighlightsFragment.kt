@@ -1,49 +1,40 @@
 package com.neil.castellino.sports.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.neil.castellino.sports.MainViewModel
 import com.neil.castellino.sports.adapters.HighlightsAdapter
 import com.neil.castellino.sports.R
 import com.neil.castellino.sports.databinding.FragmentHighlightsBinding
-import com.neil.castellino.sports.models.HighlightsData
-import com.neil.castellino.sports.network.ApiCallback
-import com.neil.castellino.sports.network.ApiManager
 import java.util.regex.Pattern
 
 class HighlightsFragment : Fragment() {
 
+    private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentHighlightsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_highlights, container, false)
+        binding.lifecycleOwner = this
 
-        binding.highlightsRecyclerView.adapter = HighlightsAdapter(listOf())
+        val adapter = HighlightsAdapter()
+        binding.highlightsRecyclerView.adapter = adapter
         binding.highlightsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val apiManager = ApiManager()
-        apiManager.getPosts(object : ApiCallback<HighlightsData> {
-            override fun onSuccess(response: HighlightsData) {
-                binding.highlightsRecyclerView.adapter = HighlightsAdapter(response.tvhighlights)
-            }
-
-            override fun onFailure(errorMessage: String) {
-                Toast.makeText(requireContext(), "API Error: $errorMessage", Toast.LENGTH_LONG)
-                    .show()
-                Log.e("API Error getPosts", errorMessage)
-            }
-        })
+        viewModel.highlights.observe(viewLifecycleOwner) { highlights ->
+            adapter.submitList(highlights)
+        }
 
         return binding.root
     }
