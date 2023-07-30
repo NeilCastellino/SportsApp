@@ -16,24 +16,51 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        val newsFragment = NewsFragment()
+        val scoresFragment = ScoresFragment()
+        val highlightsFragment = HighlightsFragment()
+        val premiumFragment = PremiumFragment()
+        var activeFragment: Fragment = newsFragment
+
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, premiumFragment, "4")
+            .hide(premiumFragment)
+            .commit()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, highlightsFragment, "3")
+            .hide(highlightsFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, scoresFragment, "2")
+            .hide(scoresFragment)
+            .commit()
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, newsFragment, "1")
+            .commit()
+
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_news -> showFragment(NewsFragment())
-                R.id.navigation_scores -> showFragment(ScoresFragment())
-                R.id.navigation_highlights -> showFragment(HighlightsFragment())
-                R.id.navigation_premium -> showFragment(PremiumFragment())
+                R.id.navigation_news -> {
+                    supportFragmentManager.beginTransaction().hide(activeFragment)
+                        .show(newsFragment).commit()
+                    activeFragment = newsFragment
+                }
+
+                R.id.navigation_scores -> {
+                    supportFragmentManager.beginTransaction().hide(activeFragment)
+                        .show(scoresFragment).commit()
+                    activeFragment = scoresFragment
+                }
+
+                R.id.navigation_highlights -> {
+                    supportFragmentManager.beginTransaction().hide(activeFragment)
+                        .show(highlightsFragment).commit()
+                    activeFragment = highlightsFragment
+                }
+
+                R.id.navigation_premium -> {
+                    supportFragmentManager.beginTransaction().hide(activeFragment)
+                        .show(premiumFragment).commit()
+                    activeFragment = premiumFragment
+                }
             }
             true
         }
-
-        if (savedInstanceState == null) {
-            showFragment(NewsFragment())
-        }
-    }
-
-    private fun showFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .commit()
     }
 }

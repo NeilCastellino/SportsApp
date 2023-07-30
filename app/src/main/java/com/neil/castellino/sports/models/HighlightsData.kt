@@ -1,5 +1,5 @@
 package com.neil.castellino.sports.models
 
-data class NewsData(
+data class HighlightsData(
     val tvhighlights: List<Tvhighlight>
 )

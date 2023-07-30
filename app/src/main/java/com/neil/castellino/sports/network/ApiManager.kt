@@ -1,6 +1,6 @@
 package com.neil.castellino.sports.network
 
-import com.neil.castellino.sports.models.NewsData
+import com.neil.castellino.sports.models.HighlightsData
 import com.neil.castellino.sports.models.SportsData
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,10 +10,10 @@ class ApiManager {
 
     private val apiService: ApiService = RetrofitClient.retrofit.create(ApiService::class.java)
 
-    fun getPosts(callback: ApiCallback<NewsData>) {
-        val call = apiService.getNews()
-        call.enqueue(object : Callback<NewsData> {
-            override fun onResponse(call: Call<NewsData>, response: Response<NewsData>) {
+    fun getPosts(callback: ApiCallback<HighlightsData>) {
+        val call = apiService.getHighlights()
+        call.enqueue(object : Callback<HighlightsData> {
+            override fun onResponse(call: Call<HighlightsData>, response: Response<HighlightsData>) {
                 if (response.isSuccessful) {
                     response.body()?.let { posts ->
                         callback.onSuccess(posts)
@@ -25,7 +25,7 @@ class ApiManager {
                 }
             }
 
-            override fun onFailure(call: Call<NewsData>, t: Throwable) {
+            override fun onFailure(call: Call<HighlightsData>, t: Throwable) {
                 callback.onFailure("Network error: ${t.message}")
             }
         })

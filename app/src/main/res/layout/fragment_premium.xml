@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/sportsImage"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:scaleType="centerCrop"
             android:src="@drawable/sports"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
-            android:text="Premium Features:\n- No Ads\n- Live Score Highlights\n- Live Score Alerts\n- Score Widget\n- Dark Mode"
+            android:text="Premium Features:\n- No Ads\n- Live Scores\n- Live Score Alerts\n- Score Widget\n- Dark Mode"
             android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -71,6 +71,7 @@
                 android:id="@+id/customSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:thumb="@drawable/custom_switch_thumb" />
 
             <TextView

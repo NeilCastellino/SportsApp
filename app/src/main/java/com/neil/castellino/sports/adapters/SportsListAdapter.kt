@@ -1,4 +1,4 @@
-package com.neil.castellino.sports
+package com.neil.castellino.sports.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

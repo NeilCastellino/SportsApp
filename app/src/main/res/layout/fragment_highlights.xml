@@ -7,11 +7,10 @@
         android:layout_height="match_parent"
         tools:context=".fragments.HighlightsFragment">
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/highlightsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Highlights" />
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 </layout>

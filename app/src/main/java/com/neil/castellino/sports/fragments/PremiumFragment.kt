@@ -30,7 +30,7 @@ class PremiumFragment : Fragment() {
             "Free for 3 months, then \$9.99 per month after."
         )
 
-        binding.data = monthlyPremium
+        binding.data = yearlyPremium
         binding.customSwitch.setOnCheckedChangeListener { _, isYearly ->
             if (isYearly) {
                 binding.data = yearlyPremium

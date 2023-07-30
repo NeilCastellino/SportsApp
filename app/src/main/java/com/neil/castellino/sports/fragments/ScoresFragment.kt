@@ -13,12 +13,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.neil.castellino.sports.R
-import com.neil.castellino.sports.SportsListAdapter
+import com.neil.castellino.sports.adapters.SportsListAdapter
 import com.neil.castellino.sports.databinding.FragmentScoresBinding
 import com.neil.castellino.sports.models.SportsData
 import com.neil.castellino.sports.network.ApiCallback
 import com.neil.castellino.sports.network.ApiManager
-import java.util.regex.Pattern
 
 class ScoresFragment : Fragment() {
     private lateinit var binding: FragmentScoresBinding

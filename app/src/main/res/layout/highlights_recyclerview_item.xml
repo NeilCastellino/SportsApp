@@ -23,7 +23,8 @@
             <ImageView
                 android:id="@+id/strThumb"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="230dp"
+                android:scaleType="fitCenter"
                 app:imageUrl="@{data.strThumb}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
