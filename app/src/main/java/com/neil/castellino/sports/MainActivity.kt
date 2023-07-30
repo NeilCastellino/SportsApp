@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.neil.castellino.sports.databinding.ActivityMainBinding
 import com.neil.castellino.sports.fragments.HighlightsFragment
-import com.neil.castellino.sports.fragments.NewsFragment
+import com.neil.castellino.sports.fragments.EventsFragment
 import com.neil.castellino.sports.fragments.PremiumFragment
 import com.neil.castellino.sports.fragments.ScoresFragment
 
@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val newsFragment = NewsFragment()
+        val eventsFragment = EventsFragment()
         val scoresFragment = ScoresFragment()
         val highlightsFragment = HighlightsFragment()
         val premiumFragment = PremiumFragment()
-        var activeFragment: Fragment = newsFragment
+        var activeFragment: Fragment = eventsFragment
 
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, premiumFragment, "4")
             .hide(premiumFragment)
@@ -31,15 +31,15 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, scoresFragment, "2")
             .hide(scoresFragment)
             .commit()
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, newsFragment, "1")
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, eventsFragment, "1")
             .commit()
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_news -> {
                     supportFragmentManager.beginTransaction().hide(activeFragment)
-                        .show(newsFragment).commit()
-                    activeFragment = newsFragment
+                        .show(eventsFragment).commit()
+                    activeFragment = eventsFragment
                 }
 
                 R.id.navigation_scores -> {

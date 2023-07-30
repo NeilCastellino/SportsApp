@@ -1,37 +1,46 @@
 package com.neil.castellino.sports
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.neil.castellino.sports.models.Event
 import com.neil.castellino.sports.models.Sport
 import com.neil.castellino.sports.models.Tvhighlight
 import com.neil.castellino.sports.network.SportsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainViewModel : ViewModel() {
     private val repository = SportsRepository()
 
-    private val _highlights = MutableLiveData<List<Tvhighlight>>()
+    private val _highlightsList = MutableLiveData<List<Tvhighlight>>()
     private val _sportsList = MutableLiveData<List<Sport>>()
+    private val _eventsList = MutableLiveData<List<Event>>()
 
-    val highlights: LiveData<List<Tvhighlight>>
-        get() = _highlights
+    val highlightsList: LiveData<List<Tvhighlight>>
+        get() = _highlightsList
     val sportsList: LiveData<List<Sport>>
         get() = _sportsList
+    val eventsList: LiveData<List<Event>>
+        get() = _eventsList
 
     init {
-        fetchHighlights()
+        fetchEventsList()
         fetchSportsList()
+        fetchHighlightsList()
     }
 
-    private fun fetchHighlights() {
+    private fun fetchHighlightsList() {
         viewModelScope.launch(Dispatchers.IO) {
-            val highlights = repository.getHighlights()
+            val highlightsList = repository.getHighlightsList()
             withContext(Dispatchers.Main) {
-                _highlights.value = highlights
+                _highlightsList.value = highlightsList
             }
         }
     }
@@ -43,5 +52,21 @@ class MainViewModel : ViewModel() {
                 _sportsList.value = sportsList
             }
         }
+    }
+
+    private fun fetchEventsList() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val eventsList = repository.getEventsList(getTodayDate())
+            withContext(Dispatchers.Main) {
+                Log.i("fetchEventsList", "Values received: $eventsList")
+                _eventsList.value = eventsList
+            }
+        }
+    }
+
+    private fun getTodayDate(): String {
+        val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        Log.i("getTodayDate", dateFormatter.format(Date()))
+        return dateFormatter.format(Date())
     }
 }

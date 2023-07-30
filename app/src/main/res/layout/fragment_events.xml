@@ -5,13 +5,11 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.NewsFragment">
+        tools:context=".fragments.EventsFragment">
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="News" />
-
+            android:layout_height="match_parent" />
     </FrameLayout>
 </layout>

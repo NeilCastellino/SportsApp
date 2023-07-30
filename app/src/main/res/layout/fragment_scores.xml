@@ -16,6 +16,7 @@
                 android:id="@+id/scoresTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="Select Sport"
                 android:textAlignment="center"
                 android:textSize="24sp"

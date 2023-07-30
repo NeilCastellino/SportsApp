@@ -32,7 +32,7 @@ class HighlightsFragment : Fragment() {
         binding.highlightsRecyclerView.adapter = adapter
         binding.highlightsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.highlights.observe(viewLifecycleOwner) { highlights ->
+        viewModel.highlightsList.observe(viewLifecycleOwner) { highlights ->
             adapter.submitList(highlights)
         }
 
