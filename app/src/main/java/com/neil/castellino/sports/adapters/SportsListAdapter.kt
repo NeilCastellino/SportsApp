@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.neil.castellino.sports.OnSportsItemClickListener
+import com.neil.castellino.sports.models.OnSportsItemClickListener
 import com.neil.castellino.sports.databinding.EventsRecyclerviewItemBinding
 import com.neil.castellino.sports.databinding.SportsListRecyclerviewItemBinding
 import com.neil.castellino.sports.models.Event

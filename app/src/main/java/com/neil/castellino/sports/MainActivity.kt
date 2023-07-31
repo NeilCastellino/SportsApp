@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.neil.castellino.sports.databinding.ActivityMainBinding
 import com.neil.castellino.sports.fragments.HighlightsFragment
-import com.neil.castellino.sports.fragments.EventsFragment
 import com.neil.castellino.sports.fragments.PremiumFragment
 import com.neil.castellino.sports.fragments.ScoresFragment
 
@@ -16,32 +15,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val eventsFragment = EventsFragment()
         val scoresFragment = ScoresFragment()
         val highlightsFragment = HighlightsFragment()
         val premiumFragment = PremiumFragment()
-        var activeFragment: Fragment = eventsFragment
+        var activeFragment: Fragment = scoresFragment
 
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, premiumFragment, "4")
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, premiumFragment, "3")
             .hide(premiumFragment)
             .commit()
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, highlightsFragment, "3")
+            .add(R.id.fragment_container, highlightsFragment, "2")
             .hide(highlightsFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, scoresFragment, "2")
-            .hide(scoresFragment)
-            .commit()
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, eventsFragment, "1")
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, scoresFragment, "1")
             .commit()
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_news -> {
-                    supportFragmentManager.beginTransaction().hide(activeFragment)
-                        .show(eventsFragment).commit()
-                    activeFragment = eventsFragment
-                }
-
                 R.id.navigation_scores -> {
                     supportFragmentManager.beginTransaction().hide(activeFragment)
                         .show(scoresFragment).commit()
