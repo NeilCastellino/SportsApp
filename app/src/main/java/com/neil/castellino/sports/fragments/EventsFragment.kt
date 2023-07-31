@@ -16,25 +16,25 @@ import com.bumptech.glide.Glide
 import com.neil.castellino.sports.MainViewModel
 import com.neil.castellino.sports.models.OnSportsItemClickListener
 import com.neil.castellino.sports.R
-import com.neil.castellino.sports.adapters.SportsListAdapter
-import com.neil.castellino.sports.databinding.FragmentScoresBinding
+import com.neil.castellino.sports.adapters.EventsAdapter
+import com.neil.castellino.sports.databinding.FragmentEventsBinding
 import com.neil.castellino.sports.models.Event
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class ScoresFragment : Fragment(), OnSportsItemClickListener {
+class EventsFragment : Fragment(), OnSportsItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
-    private lateinit var binding: FragmentScoresBinding
+    private lateinit var binding: FragmentEventsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_scores, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_events, container, false)
         binding.lifecycleOwner = this
 
-        val adapter = SportsListAdapter(this)
+        val adapter = EventsAdapter(this)
         binding.scoresRecyclerView.adapter = adapter
         binding.scoresRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 

@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.neil.castellino.sports.databinding.ActivityMainBinding
 import com.neil.castellino.sports.fragments.HighlightsFragment
 import com.neil.castellino.sports.fragments.PremiumFragment
-import com.neil.castellino.sports.fragments.ScoresFragment
+import com.neil.castellino.sports.fragments.EventsFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -15,10 +15,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val scoresFragment = ScoresFragment()
+        val eventsFragment = EventsFragment()
         val highlightsFragment = HighlightsFragment()
         val premiumFragment = PremiumFragment()
-        var activeFragment: Fragment = scoresFragment
+        var activeFragment: Fragment = eventsFragment
 
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, premiumFragment, "3")
             .hide(premiumFragment)
@@ -26,15 +26,15 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, highlightsFragment, "2")
             .hide(highlightsFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, scoresFragment, "1")
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, eventsFragment, "1")
             .commit()
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_scores -> {
                     supportFragmentManager.beginTransaction().hide(activeFragment)
-                        .show(scoresFragment).commit()
-                    activeFragment = scoresFragment
+                        .show(eventsFragment).commit()
+                    activeFragment = eventsFragment
                 }
 
                 R.id.navigation_highlights -> {

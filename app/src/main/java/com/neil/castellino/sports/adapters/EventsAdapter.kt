@@ -11,8 +11,8 @@ import com.neil.castellino.sports.databinding.SportsListRecyclerviewItemBinding
 import com.neil.castellino.sports.models.Event
 import com.neil.castellino.sports.models.Sport
 
-class SportsListAdapter(private val listener: OnSportsItemClickListener) :
-    ListAdapter<BaseSportsData, RecyclerView.ViewHolder>(DiffCallback()) {
+class EventsAdapter(private val listener: OnSportsItemClickListener) :
+    ListAdapter<BaseEventsData, RecyclerView.ViewHolder>(DiffCallback()) {
 
     inner class SportsViewHolder(private val binding: SportsListRecyclerviewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -45,8 +45,8 @@ class SportsListAdapter(private val listener: OnSportsItemClickListener) :
         submitList(eventsData)
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<BaseSportsData>() {
-        override fun areItemsTheSame(oldItem: BaseSportsData, newItem: BaseSportsData): Boolean {
+    class DiffCallback : DiffUtil.ItemCallback<BaseEventsData>() {
+        override fun areItemsTheSame(oldItem: BaseEventsData, newItem: BaseEventsData): Boolean {
             return when {
                 oldItem is SportWrapper && newItem is SportWrapper ->
                     oldItem.sport.idSport == newItem.sport.idSport
@@ -58,7 +58,7 @@ class SportsListAdapter(private val listener: OnSportsItemClickListener) :
             }
         }
 
-        override fun areContentsTheSame(oldItem: BaseSportsData, newItem: BaseSportsData): Boolean {
+        override fun areContentsTheSame(oldItem: BaseEventsData, newItem: BaseEventsData): Boolean {
             return when {
                 oldItem is SportWrapper && newItem is SportWrapper ->
                     oldItem.sport.idSport == newItem.sport.idSport
@@ -70,7 +70,7 @@ class SportsListAdapter(private val listener: OnSportsItemClickListener) :
             }
         }
 
-        override fun getChangePayload(oldItem: BaseSportsData, newItem: BaseSportsData): Any? {
+        override fun getChangePayload(oldItem: BaseEventsData, newItem: BaseEventsData): Any? {
             // Check if view holder type has changed and return the payload if needed
             return if (oldItem::class != newItem::class) {
                 Any() // Return any non-null payload to indicate a change in view holder type
@@ -134,6 +134,6 @@ class SportsListAdapter(private val listener: OnSportsItemClickListener) :
     }
 }
 
-interface BaseSportsData
-data class SportWrapper(val sport: Sport) : BaseSportsData
-data class EventWrapper(val event: Event) : BaseSportsData
+interface BaseEventsData
+data class SportWrapper(val sport: Sport) : BaseEventsData
+data class EventWrapper(val event: Event) : BaseEventsData
