@@ -67,12 +67,13 @@
                 android:text="Monthly:\n$14.99 per month"
                 android:textAlignment="center" />
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/customSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:thumb="@drawable/custom_switch_thumb" />
+                android:thumb="@drawable/custom_switch_thumb"
+                app:trackTint="@color/green_light" />
 
             <TextView
                 android:layout_width="wrap_content"

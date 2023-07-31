@@ -1,24 +1,25 @@
 package com.neil.castellino.sports.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.neil.castellino.sports.MainViewModel
-import com.neil.castellino.sports.models.OnRecyclerViewItemClickListener
 import com.neil.castellino.sports.R
 import com.neil.castellino.sports.adapters.EventsAdapter
 import com.neil.castellino.sports.databinding.FragmentEventsBinding
 import com.neil.castellino.sports.models.Event
+import com.neil.castellino.sports.models.OnRecyclerViewItemClickListener
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -27,6 +28,20 @@ class EventsFragment : Fragment(), OnRecyclerViewItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentEventsBinding
+    private var isEventsListDisplayed = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            if (isEventsListDisplayed) {
+                viewModel.fetchSportsList()
+            } else {
+                handleOnBackPressed()
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +54,9 @@ class EventsFragment : Fragment(), OnRecyclerViewItemClickListener {
         binding.scoresRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.sportsList.observe(viewLifecycleOwner) { sportsList ->
+            binding.scoresTitle.visibility = View.VISIBLE
             adapter.submitSportsList(sportsList)
+            isEventsListDisplayed = false
         }
 
         viewModel.eventsList.observe(viewLifecycleOwner) { eventsList ->
@@ -48,6 +65,7 @@ class EventsFragment : Fragment(), OnRecyclerViewItemClickListener {
             else {
                 binding.scoresTitle.visibility = View.GONE
                 adapter.submitEventsList(eventsList)
+                isEventsListDisplayed = true
             }
         }
 

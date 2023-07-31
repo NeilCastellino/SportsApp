@@ -48,7 +48,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    private fun fetchSportsList() {
+    fun fetchSportsList() {
         viewModelScope.launch(Dispatchers.IO) {
             val sportsList = repository.getSportsList()
             withContext(Dispatchers.Main) {
