@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "77527884311",
+    "project_id": "sports-8a139",
+    "storage_bucket": "sports-8a139.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77527884311:android:7f21612630acdb7e3c7252",
+        "android_client_info": {
+          "package_name": "com.neil.castellino.sports"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77527884311-p8ca8ha5dep70s1q2p6ca7ooj15qe3ae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUMF81-TA5g3HYU3z9yn75q59XCkJiBJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77527884311-p8ca8ha5dep70s1q2p6ca7ooj15qe3ae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

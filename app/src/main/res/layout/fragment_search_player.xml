@@ -27,7 +27,7 @@
                 android:id="@+id/helpText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter a player's name to search"
+                android:text="@string/search_help"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

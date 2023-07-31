@@ -3,20 +3,20 @@
     <item
         android:id="@+id/navigation_scores"
         android:icon="@drawable/baseline_events"
-        android:title="Events" />
+        android:title="@string/events" />
 
     <item
         android:id="@+id/navigation_search_player"
         android:icon="@drawable/baseline_person_search"
-        android:title="Search" />
+        android:title="@string/search" />
 
     <item
         android:id="@+id/navigation_highlights"
         android:icon="@drawable/baseline_highlights"
-        android:title="Highlights" />
+        android:title="@string/highlights" />
 
     <item
         android:id="@+id/navigation_premium"
         android:icon="@drawable/baseline_premium"
-        android:title="Premium" />
+        android:title="@string/premium" />
 </menu>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.neil.castellino.sports.R
 import com.neil.castellino.sports.databinding.FragmentPremiumBinding
 import com.neil.castellino.sports.models.Premium
@@ -37,6 +38,12 @@ class PremiumFragment : Fragment() {
             } else {
                 binding.data = monthlyPremium
             }
+        }
+        binding.premiumButton.setOnClickListener {
+            FirebaseAnalytics.getInstance(requireContext())
+                .logEvent("button_click", Bundle().apply {
+                    this.putString("name", "Get Premium")
+                })
         }
 
         return binding.root

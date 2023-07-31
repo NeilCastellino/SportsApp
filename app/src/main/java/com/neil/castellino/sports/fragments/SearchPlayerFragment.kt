@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.neil.castellino.sports.MainViewModel
 import com.neil.castellino.sports.R
 import com.neil.castellino.sports.adapters.SearchPlayerAdapter
@@ -36,8 +37,13 @@ class SearchPlayerFragment : Fragment() {
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (!query.isNullOrEmpty())
+                if (!query.isNullOrEmpty()) {
                     viewModel.fetchPlayerDetails(query)
+                    FirebaseAnalytics.getInstance(binding.root.context)
+                        .logEvent("search_player", Bundle().apply {
+                            this.putString("query", query)
+                        })
+                }
                 return false
             }
 

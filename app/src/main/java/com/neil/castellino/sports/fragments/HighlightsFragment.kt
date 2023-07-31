@@ -18,9 +18,9 @@ import com.neil.castellino.sports.databinding.FragmentHighlightsBinding
 import java.util.regex.Pattern
 
 class HighlightsFragment : Fragment() {
-
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentHighlightsBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

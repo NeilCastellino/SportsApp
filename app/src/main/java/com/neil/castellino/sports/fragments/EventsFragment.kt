@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.neil.castellino.sports.MainViewModel
 import com.neil.castellino.sports.R
 import com.neil.castellino.sports.adapters.EventsAdapter
@@ -111,12 +112,16 @@ class EventsFragment : Fragment(), OnRecyclerViewItemClickListener {
                 val venueVal = if (venue.strVenue.isNullOrEmpty()) "" else venue.strVenue
                 val cityVal = if (venue.strCity.isNullOrEmpty()) "" else venue.strCity
                 val countryVal = if (venue.strCountry.isNullOrEmpty()) "" else venue.strCountry
-                view.text = venueVal + " - " + cityVal + ", " + countryVal
+                view.text = "$venueVal - $cityVal, $countryVal"
             }
         }
     }
 
     override fun onItemClick(sport: String) {
+        FirebaseAnalytics.getInstance(requireContext())
+            .logEvent("event_selected", Bundle().apply {
+                this.putString("sport", sport)
+            })
         viewModel.fetchEventsList(sport)
     }
 }

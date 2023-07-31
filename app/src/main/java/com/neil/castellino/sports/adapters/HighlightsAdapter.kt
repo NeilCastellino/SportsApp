@@ -3,16 +3,17 @@ package com.neil.castellino.sports.adapters
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.neil.castellino.sports.databinding.HighlightsRecyclerviewItemBinding
 import com.neil.castellino.sports.models.Tvhighlight
 
-class HighlightsAdapter() :
-    ListAdapter<Tvhighlight, HighlightsAdapter.ViewHolder>(DiffCallback()) {
+class HighlightsAdapter : ListAdapter<Tvhighlight, HighlightsAdapter.ViewHolder>(DiffCallback()) {
 
     inner class ViewHolder(private val binding: HighlightsRecyclerviewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -21,6 +22,10 @@ class HighlightsAdapter() :
             binding.data = data
             binding.root.setOnClickListener {
                 openYouTubeVideo(data.strVideo, binding)
+                FirebaseAnalytics.getInstance(binding.root.context)
+                    .logEvent("highlight_selected", Bundle().apply {
+                        this.putString("event", data.strEvent)
+                    })
             }
 
             binding.executePendingBindings()

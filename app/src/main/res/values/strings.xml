@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Sports</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_premium">Get Premium</string>
+    <string name="price_yearly">Yearly: $119\n($9.99 per month)</string>
+    <string name="price_monthly">Monthly:\n$14.99 per month</string>
+    <string name="premium_features">Premium Features:\n- No Ads\n- Live Scores\n- Live Score Alerts\n- Score Widget\n- Dark Mode</string>
+    <string name="select_sport">Select Sport</string>
+    <string name="search_help">Enter a player\'s name to search</string>
+    <string name="events">Events</string>
+    <string name="search">Search</string>
+    <string name="highlights">Highlights</string>
+    <string name="premium">Premium</string>
 </resources>

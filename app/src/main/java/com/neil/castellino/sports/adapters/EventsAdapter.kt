@@ -39,7 +39,6 @@ class EventsAdapter(private val listener: OnRecyclerViewItemClickListener) :
         submitList(sportsData)
     }
 
-    // Method to submit a list of Event data to the adapter
     fun submitEventsList(eventsList: List<Event>) {
         val eventsData = eventsList.map { EventWrapper(it) }
         submitList(eventsData)
@@ -71,7 +70,6 @@ class EventsAdapter(private val listener: OnRecyclerViewItemClickListener) :
         }
 
         override fun getChangePayload(oldItem: BaseEventsData, newItem: BaseEventsData): Any? {
-            // Check if view holder type has changed and return the payload if needed
             return if (oldItem::class != newItem::class) {
                 Any() // Return any non-null payload to indicate a change in view holder type
             } else {
