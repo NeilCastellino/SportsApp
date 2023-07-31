@@ -27,9 +27,9 @@ class SportsRepository {
         }
     }
 
-    suspend fun getEventsList(date: String): List<Event> {
+    suspend fun getEventsList(date: String, sport: String): List<Event> {
         return try {
-            apiService.getEventsList(date).events
+            apiService.getEventsList(date, sport).events
         } catch (e: Exception) {
             Log.e("SportsList API Error:", e.message.toString())
             emptyList()

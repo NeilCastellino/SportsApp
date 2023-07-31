@@ -31,7 +31,6 @@ class MainViewModel : ViewModel() {
         get() = _eventsList
 
     init {
-        fetchEventsList()
         fetchSportsList()
         fetchHighlightsList()
     }
@@ -54,9 +53,9 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    private fun fetchEventsList() {
+    fun fetchEventsList(sport: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val eventsList = repository.getEventsList(getTodayDate())
+            val eventsList = repository.getEventsList(getTodayDate(), getSport(sport))
             withContext(Dispatchers.Main) {
                 Log.i("fetchEventsList", "Values received: $eventsList")
                 _eventsList.value = eventsList
@@ -68,5 +67,9 @@ class MainViewModel : ViewModel() {
         val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         Log.i("getTodayDate", dateFormatter.format(Date()))
         return dateFormatter.format(Date())
+    }
+
+    private fun getSport(sport: String): String {
+        return sport.replace(" ", "")
     }
 }

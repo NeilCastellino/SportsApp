@@ -14,5 +14,5 @@ interface ApiService {
     suspend fun getSportsList(): SportsData
 
     @GET("eventsday.php")
-    suspend fun getEventsList(@Query("d") date: String): EventsData
+    suspend fun getEventsList(@Query("d") date: String, @Query("s") sport: String): EventsData
 }
