@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="data"
-            type="com.neil.castellino.sports.models.Tvhighlight" />
+            type="com.neil.castellino.sports.models.Player" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -26,28 +25,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
                 android:scaleType="fitCenter"
-                app:imageUrl="@{data.strThumb}"
+                app:imageLoadUrlPerson="@{data.strThumb}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:videoUrl="@{data.strVideo}" />
-
-            <ImageView
-                android:id="@+id/play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:src="@drawable/baseline_play"
-                app:layout_constraintBottom_toBottomOf="@+id/strThumb"
-                app:layout_constraintEnd_toEndOf="@+id/strThumb"
-                app:layout_constraintStart_toStartOf="@+id/strThumb"
-                app:layout_constraintTop_toTopOf="@+id/strThumb" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/strEvent"
+                android:id="@+id/strPlayer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{data.strEvent}"
+                android:text="@{data.strPlayer}"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -55,32 +42,48 @@
                 app:layout_constraintTop_toBottomOf="@id/strThumb" />
 
             <TextView
-                android:id="@+id/strLeague"
+                android:id="@+id/strTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{data.strLeague}"
+                android:text="@{data.strTeam}"
+                android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/strEvent" />
+                app:layout_constraintTop_toBottomOf="@id/strPlayer" />
 
             <TextView
                 android:id="@+id/strSport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{data.strSport}"
+                android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/strLeague" />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/strTeam" />
 
             <TextView
-                android:id="@+id/dateEvent"
+                android:id="@+id/strNationality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{data.dateEvent}"
+                android:text="@{data.strNationality}"
+                android:textAlignment="center"
                 android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/strLeague" />
+                app:layout_constraintTop_toBottomOf="@id/strSport" />
+
+            <TextView
+                android:id="@+id/strDescriptionEN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.strDescriptionEN}"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/strNationality" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

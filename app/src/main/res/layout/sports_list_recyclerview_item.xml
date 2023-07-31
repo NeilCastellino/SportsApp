@@ -24,7 +24,7 @@
                 android:id="@+id/strSportIconGreen"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:imageUrl="@{data.strSportIconGreen}"
+                app:imageLoadUrl="@{data.strSportIconGreen}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -8,6 +8,7 @@ import com.neil.castellino.sports.databinding.ActivityMainBinding
 import com.neil.castellino.sports.fragments.HighlightsFragment
 import com.neil.castellino.sports.fragments.PremiumFragment
 import com.neil.castellino.sports.fragments.EventsFragment
+import com.neil.castellino.sports.fragments.SearchPlayerFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -16,16 +17,20 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val eventsFragment = EventsFragment()
+        val searchPlayer = SearchPlayerFragment()
         val highlightsFragment = HighlightsFragment()
         val premiumFragment = PremiumFragment()
         var activeFragment: Fragment = eventsFragment
 
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, premiumFragment, "3")
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, premiumFragment, "4")
             .hide(premiumFragment)
             .commit()
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, highlightsFragment, "2")
+            .add(R.id.fragment_container, highlightsFragment, "3")
             .hide(highlightsFragment).commit()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, searchPlayer, "2")
+            .hide(searchPlayer).commit()
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, eventsFragment, "1")
             .commit()
 
@@ -35,6 +40,12 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().hide(activeFragment)
                         .show(eventsFragment).commit()
                     activeFragment = eventsFragment
+                }
+
+                R.id.navigation_search_player->{
+                    supportFragmentManager.beginTransaction().hide(activeFragment)
+                        .show(searchPlayer).commit()
+                    activeFragment = searchPlayer
                 }
 
                 R.id.navigation_highlights -> {

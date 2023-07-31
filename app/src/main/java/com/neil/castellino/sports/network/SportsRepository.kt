@@ -2,6 +2,7 @@ package com.neil.castellino.sports.network
 
 import android.util.Log
 import com.neil.castellino.sports.models.Event
+import com.neil.castellino.sports.models.Player
 import com.neil.castellino.sports.models.Sport
 import com.neil.castellino.sports.models.Tvhighlight
 import com.neil.castellino.sports.network.RetrofitClient.apiService
@@ -31,7 +32,16 @@ class SportsRepository {
         return try {
             apiService.getEventsList(date, sport).events
         } catch (e: Exception) {
-            Log.e("SportsList API Error:", e.message.toString())
+            Log.e("EventsList API Error:", e.message.toString())
+            emptyList()
+        }
+    }
+
+    suspend fun getPlayerDetails(playerName: String): List<Player> {
+        return try {
+            apiService.getPlayerDetails(playerName).player
+        } catch (e: Exception) {
+            Log.e("PlayerDetails API Error:", e.message.toString())
             emptyList()
         }
     }

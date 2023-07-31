@@ -6,6 +6,11 @@
         android:title="Events" />
 
     <item
+        android:id="@+id/navigation_search_player"
+        android:icon="@drawable/baseline_person_search"
+        android:title="Search" />
+
+    <item
         android:id="@+id/navigation_highlights"
         android:icon="@drawable/baseline_highlights"
         android:title="Highlights" />

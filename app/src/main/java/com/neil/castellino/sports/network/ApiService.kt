@@ -2,6 +2,7 @@ package com.neil.castellino.sports.network
 
 import com.neil.castellino.sports.models.EventsData
 import com.neil.castellino.sports.models.HighlightsData
+import com.neil.castellino.sports.models.PlayerData
 import com.neil.castellino.sports.models.SportsData
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,4 +16,7 @@ interface ApiService {
 
     @GET("eventsday.php")
     suspend fun getEventsList(@Query("d") date: String, @Query("s") sport: String): EventsData
+
+    @GET("searchplayers.php")
+    suspend fun getPlayerDetails(@Query("p") playerName: String): PlayerData
 }

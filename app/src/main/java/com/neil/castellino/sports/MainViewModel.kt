@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.neil.castellino.sports.models.Event
+import com.neil.castellino.sports.models.Player
 import com.neil.castellino.sports.models.Sport
 import com.neil.castellino.sports.models.Tvhighlight
 import com.neil.castellino.sports.network.SportsRepository
@@ -22,6 +23,7 @@ class MainViewModel : ViewModel() {
     private val _highlightsList = MutableLiveData<List<Tvhighlight>>()
     private val _sportsList = MutableLiveData<List<Sport>>()
     private val _eventsList = MutableLiveData<List<Event>>()
+    private val _playersList = MutableLiveData<List<Player>>()
 
     val highlightsList: LiveData<List<Tvhighlight>>
         get() = _highlightsList
@@ -29,6 +31,8 @@ class MainViewModel : ViewModel() {
         get() = _sportsList
     val eventsList: LiveData<List<Event>>
         get() = _eventsList
+    val playersList: LiveData<List<Player>>
+        get() = _playersList
 
     init {
         fetchSportsList()
@@ -57,7 +61,6 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val eventsList = repository.getEventsList(getTodayDate(), getSport(sport))
             withContext(Dispatchers.Main) {
-                Log.i("fetchEventsList", "Values received: $eventsList")
                 _eventsList.value = eventsList
             }
         }
@@ -65,11 +68,20 @@ class MainViewModel : ViewModel() {
 
     private fun getTodayDate(): String {
         val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-        Log.i("getTodayDate", dateFormatter.format(Date()))
         return dateFormatter.format(Date())
     }
 
     private fun getSport(sport: String): String {
         return sport.replace(" ", "")
+    }
+
+    fun fetchPlayerDetails(playerName: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            Log.i("playerName", playerName)
+            val playerList = repository.getPlayerDetails(playerName)
+            withContext(Dispatchers.Main) {
+                _playersList.value = playerList
+            }
+        }
     }
 }

@@ -1,5 +1,5 @@
 package com.neil.castellino.sports.models
 
-interface OnSportsItemClickListener {
+interface OnRecyclerViewItemClickListener {
     fun onItemClick(sport: String)
 }

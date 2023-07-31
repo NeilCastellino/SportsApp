@@ -14,7 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.neil.castellino.sports.MainViewModel
-import com.neil.castellino.sports.models.OnSportsItemClickListener
+import com.neil.castellino.sports.models.OnRecyclerViewItemClickListener
 import com.neil.castellino.sports.R
 import com.neil.castellino.sports.adapters.EventsAdapter
 import com.neil.castellino.sports.databinding.FragmentEventsBinding
@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class EventsFragment : Fragment(), OnSportsItemClickListener {
+class EventsFragment : Fragment(), OnRecyclerViewItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentEventsBinding
@@ -56,10 +56,11 @@ class EventsFragment : Fragment(), OnSportsItemClickListener {
 
     companion object {
         @JvmStatic
-        @BindingAdapter("imageUrl")
-        fun loadImage(view: ImageView, imageUrl: String?) {
-            if (!imageUrl.isNullOrEmpty()) {
-                Glide.with(view.context).load(imageUrl).thumbnail(0.5f).into(view)
+        @BindingAdapter("imageLoadUrl")
+        fun loadImageUrl(view: ImageView, imageLoadUrl: String?) {
+            if (!imageLoadUrl.isNullOrEmpty()) {
+                Glide.with(view.context).load(imageLoadUrl).placeholder(R.drawable.baseline_tv)
+                    .thumbnail(0.5f).into(view)
             }
         }
 

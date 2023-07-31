@@ -44,7 +44,8 @@ class HighlightsFragment : Fragment() {
         @BindingAdapter("imageUrl", "videoUrl")
         fun loadImage(view: ImageView, imageUrl: String?, videoUrl: String?) {
             if (!imageUrl.isNullOrEmpty()) {
-                Glide.with(view.context).load(imageUrl).thumbnail(0.5f).into(view)
+                Glide.with(view.context).load(imageUrl).placeholder(R.drawable.baseline_tv)
+                    .thumbnail(0.5f).into(view)
             } else if (!videoUrl.isNullOrEmpty()) {
                 val videoId = getYoutubeVideoId(videoUrl)
                 val thumbnailUrl = "https://img.youtube.com/vi/$videoId/0.jpg"
